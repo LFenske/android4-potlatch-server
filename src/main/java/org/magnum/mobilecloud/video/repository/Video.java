@@ -1,5 +1,16 @@
 package org.magnum.mobilecloud.video.repository;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 import com.google.common.base.Objects;
 
 /**
@@ -16,16 +27,22 @@ import com.google.common.base.Objects;
  * 
  * @author mitchell
  */
+@Entity
 public class Video {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
 	private String name;
 	private String url;
 	private long duration;
 	private long likes;
+	@ElementCollection
+	private Set<String> likers = new HashSet<String>();
 	
 	public Video() {
+		this.likes = 0;
 	}
 
 	public Video(String name, String url, long duration, long likes) {
@@ -35,6 +52,17 @@ public class Video {
 		this.duration = duration;
 		this.likes = likes;
 	}
+
+	public void addLiker(String user) {
+		this.likes++;
+		this.likers.add(user);
+	}
+	
+	public void delLiker(String user) {
+		this.likes--;
+		this.likers.remove(user);;
+	}
+	
 
 	public String getName() {
 		return name;
@@ -74,6 +102,14 @@ public class Video {
 	
 	public void setLikes(long likes) {
 		this.likes = likes;
+	}
+	
+	public Set<String> getLikers() {
+		return likers;
+	}
+	
+	public void setLikers(Set<String> likers) {
+		this.likers = likers;
 	}
 	
 	/**
