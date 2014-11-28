@@ -10,32 +10,6 @@ import retrofit.http.Path;
 import retrofit.http.Query;
 
 /**
- *                       DO NOT MODIFY THIS INTERFACE
-                    ___                    ___           ___                            
-     _____         /\  \                  /\  \         /\  \                           
-    /::\  \       /::\  \                 \:\  \       /::\  \         ___              
-   /:/\:\  \     /:/\:\  \                 \:\  \     /:/\:\  \       /\__\             
-  /:/  \:\__\   /:/  \:\  \            _____\:\  \   /:/  \:\  \     /:/  /             
- /:/__/ \:|__| /:/__/ \:\__\          /::::::::\__\ /:/__/ \:\__\   /:/__/              
- \:\  \ /:/  / \:\  \ /:/  /          \:\~~\~~\/__/ \:\  \ /:/  /  /::\  \              
-  \:\  /:/  /   \:\  /:/  /            \:\  \        \:\  /:/  /  /:/\:\  \             
-   \:\/:/  /     \:\/:/  /              \:\  \        \:\/:/  /   \/__\:\  \            
-    \::/  /       \::/  /                \:\__\        \::/  /         \:\__\           
-     \/__/         \/__/                  \/__/         \/__/           \/__/           
-      ___           ___                                     ___                         
-     /\  \         /\  \         _____                     /\__\                        
-    |::\  \       /::\  \       /::\  \       ___         /:/ _/_         ___           
-    |:|:\  \     /:/\:\  \     /:/\:\  \     /\__\       /:/ /\__\       /|  |          
-  __|:|\:\  \   /:/  \:\  \   /:/  \:\__\   /:/__/      /:/ /:/  /      |:|  |          
- /::::|_\:\__\ /:/__/ \:\__\ /:/__/ \:|__| /::\  \     /:/_/:/  /       |:|  |          
- \:\~~\  \/__/ \:\  \ /:/  / \:\  \ /:/  / \/\:\  \__  \:\/:/  /      __|:|__|          
-  \:\  \        \:\  /:/  /   \:\  /:/  /   ~~\:\/\__\  \::/__/      /::::\  \          
-   \:\  \        \:\/:/  /     \:\/:/  /       \::/  /   \:\  \      ~~~~\:\  \         
-    \:\__\        \::/  /       \::/  /        /:/  /     \:\__\          \:\__\        
-     \/__/         \/__/         \/__/         \/__/       \/__/           \/__/        
- * 
- * 
- * /**
  * This interface defines an API for a MediaSvc. The
  * interface is used to provide a contract for client/server
  * interactions. The interface is annotated with Retrofit
@@ -134,10 +108,10 @@ import retrofit.http.Query;
 public interface MediaSvcApi {
 
 	public static final String TITLE_PARAMETER = "title";
-	
+
 	//TODO
 	public static final String DURATION_PARAMETER = "duration";
-	
+
 	public static final String FLAGS_PARAMETER = "flags";
 
 	public static final String TOKEN_PATH = "/oauth/token";
@@ -147,7 +121,7 @@ public interface MediaSvcApi {
 
 	// The path to search media by title
 	public static final String MEDIA_TITLE_SEARCH_PATH = MEDIA_SVC_PATH + "/search/findByName";
-	
+
 	//TODO
 	// The path to search media by duration
 	public static final String MEDIA_DURATION_SEARCH_PATH = MEDIA_SVC_PATH + "/search/findByDurationLessThan";
@@ -157,41 +131,41 @@ public interface MediaSvcApi {
 
 	@GET(MEDIA_SVC_PATH)
 	public Collection<Media> getMediaList();
-	
+
 	@GET(MEDIA_SVC_PATH + "/unflagged")
 	public Collection<Media> getMediaListUnflagged();
-	
+
 	@GET(MEDIA_SVC_PATH + "/{id}")
 	public Media getMediaById(@Path("id") long id);
-	
+
 	@POST(MEDIA_SVC_PATH)
 	public Media addMedia(@Body Media v);
-	
+
 	@POST(MEDIA_SVC_PATH + "/{id}/like")
 	public Void likeMedia(@Path("id") long id);
-	
+
 	@POST(MEDIA_SVC_PATH + "/{id}/unlike")
 	public Void unlikeMedia(@Path("id") long id);
-	
+
 	@POST(MEDIA_SVC_PATH + "/{id}/flag")
 	public Void flagMedia(@Path("id") long id);
-	
+
 	@POST(MEDIA_SVC_PATH + "/{id}/unflag")
 	public Void unflagMedia(@Path("id") long id);
-	
+
 	@GET(MEDIA_TITLE_SEARCH_PATH)
 	public Collection<Media> findByTitle(@Query(TITLE_PARAMETER) String title);
-	
+
 	//TODO
 	@GET(MEDIA_DURATION_SEARCH_PATH)
 	public Collection<Media> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);
-	
+
 	@GET(MEDIA_FLAGS_SEARCH_PATH)
 	public Collection<Media> findByFlags(@Query(FLAGS_PARAMETER) long flags);
-	
+
 	@GET(MEDIA_SVC_PATH + "/{id}/likedby")
 	public Collection<String> getUsersWhoLikedMedia(@Path("id") long id);
-	
+
 	@GET(MEDIA_SVC_PATH + "/{id}/flaggedby")
 	public Collection<String> getUsersWhoFlaggedMedia(@Path("id") long id);
 }
