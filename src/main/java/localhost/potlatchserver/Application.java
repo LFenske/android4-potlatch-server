@@ -1,11 +1,11 @@
-package localhost.media;
+package localhost.potlatchserver;
 
 //import java.io.File;
 
 //import org.apache.catalina.connector.Connector;
 //import org.apache.coyote.http11.Http11NioProtocol;
-import localhost.media.auth.OAuth2SecurityConfiguration;
-import localhost.media.repository.MediaRepository;
+import localhost.potlatchserver.auth.OAuth2SecurityConfiguration;
+import localhost.potlatchserver.repository.MediaRepository;
 
 //import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;

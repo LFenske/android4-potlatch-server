@@ -2,7 +2,7 @@ package localhost.media2;
 
 import java.util.UUID;
 
-import localhost.media.repository.Media;
+import localhost.potlatchserver.repository.Media;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

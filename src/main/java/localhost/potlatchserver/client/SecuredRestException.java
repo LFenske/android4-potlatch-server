@@ -4,7 +4,7 @@
  **
  ** 
  */
-package localhost.media.client;
+package localhost.potlatchserver.client;
 
 /**
  * A special class made to specify exceptions that are thrown by our

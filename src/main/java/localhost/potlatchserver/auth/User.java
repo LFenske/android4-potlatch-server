@@ -4,7 +4,7 @@
  **
  ** 
  */
-package localhost.media.auth;
+package localhost.potlatchserver.auth;
 
 import java.util.Collection;
 import java.util.Collections;

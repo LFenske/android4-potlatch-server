@@ -1,13 +1,13 @@
-package localhost.media;
+package localhost.potlatchserver;
 
 import java.security.Principal;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletResponse;
 
-import localhost.media.repository.Media;
-import localhost.media.repository.MediaRepository;
-import localhost.media.repository.MediaStatus;
+import localhost.potlatchserver.repository.Media;
+import localhost.potlatchserver.repository.MediaRepository;
+import localhost.potlatchserver.repository.MediaStatus;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

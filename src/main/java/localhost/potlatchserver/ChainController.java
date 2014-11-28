@@ -1,9 +1,9 @@
-package localhost.media;
+package localhost.potlatchserver;
 
 import javax.servlet.http.HttpServletResponse;
 
-import localhost.media.repository.Chain;
-import localhost.media.repository.ChainRepository;
+import localhost.potlatchserver.repository.Chain;
+import localhost.potlatchserver.repository.ChainRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

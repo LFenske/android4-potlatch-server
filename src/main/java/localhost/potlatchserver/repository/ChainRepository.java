@@ -1,4 +1,4 @@
-package localhost.media.repository;
+package localhost.potlatchserver.repository;
 
 import java.util.Collection;
 

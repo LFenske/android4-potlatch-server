@@ -15,7 +15,7 @@
  * limitations under the License.
  * 
  */
-package localhost.media.repository;
+package localhost.potlatchserver.repository;
 
 /**
                     ___                    ___           ___                            
@@ -42,24 +42,24 @@ package localhost.media.repository;
      \/__/         \/__/         \/__/         \/__/       \/__/           \/__/        
  *
  */
-public class ChainStatus {
+public class MediaStatus {
 
-	public enum ChainState {
+	public enum MediaState {
 		READY, PROCESSING
 	}
 
-	private ChainState state;
+	private MediaState state;
 
-	public ChainStatus(ChainState state) {
+	public MediaStatus(MediaState state) {
 		super();
 		this.state = state;
 	}
 
-	public ChainState getState() {
+	public MediaState getState() {
 		return state;
 	}
 
-	public void setState(ChainState state) {
+	public void setState(MediaState state) {
 		this.state = state;
 	}
 

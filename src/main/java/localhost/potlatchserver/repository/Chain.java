@@ -1,4 +1,4 @@
-package localhost.media.repository;
+package localhost.potlatchserver.repository;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

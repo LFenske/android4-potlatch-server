@@ -1,4 +1,4 @@
-package localhost.media.auth;
+package localhost.potlatchserver.auth;
 
 import java.io.File;
 import java.util.Arrays;

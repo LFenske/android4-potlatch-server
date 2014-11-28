@@ -15,7 +15,7 @@
  * limitations under the License.
  * 
  */
-package localhost.media;
+package localhost.potlatchserver;
 
 import io.magnum.autograder.HandinUtil;
 
@@ -78,7 +78,7 @@ public class AutoGrading {
 	public static void main(String[] args) throws Exception {
 
 		// Ensure that this application is run within the correct working directory
-		File f = new File("./src/main/java/localhost/media/Application.java");
+		File f = new File("./src/main/java/localhost/potlatchserver/Application.java");
 		if (!f.exists()) {
 			System.out
 					.println(WordUtils

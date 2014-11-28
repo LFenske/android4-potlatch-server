@@ -4,7 +4,7 @@
  **
  ** 
  */
-package localhost.media.auth;
+package localhost.potlatchserver.auth;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

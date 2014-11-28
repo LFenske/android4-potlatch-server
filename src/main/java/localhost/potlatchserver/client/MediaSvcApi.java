@@ -1,8 +1,8 @@
-package localhost.media.client;
+package localhost.potlatchserver.client;
 
 import java.util.Collection;
 
-import localhost.media.repository.Media;
+import localhost.potlatchserver.repository.Media;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;

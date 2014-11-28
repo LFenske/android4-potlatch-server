@@ -4,7 +4,7 @@
  **
  ** 
  */
-package localhost.media.client;
+package localhost.potlatchserver.client;
 
 import java.util.ArrayList;
 import java.util.List;

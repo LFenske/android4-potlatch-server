@@ -11,9 +11,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import localhost.media.client.MediaSvcApi;
-import localhost.media.client.SecuredRestBuilder;
-import localhost.media.repository.Media;
+import localhost.potlatchserver.client.MediaSvcApi;
+import localhost.potlatchserver.client.SecuredRestBuilder;
+import localhost.potlatchserver.repository.Media;
 import localhost.media2.TestData;
 
 import org.apache.http.HttpStatus;
