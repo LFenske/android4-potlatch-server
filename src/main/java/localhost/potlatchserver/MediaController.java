@@ -1,8 +1,12 @@
 package localhost.potlatchserver;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.Principal;
 import java.util.Set;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import localhost.potlatchserver.repository.Media;
@@ -16,8 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.embedded.MultiPartConfigFactory;
+import org.springframework.context.annotation.Bean;
 
 
 @Controller
@@ -25,6 +34,20 @@ public class MediaController {
 	
 	@Autowired
 	private MediaRepository media;
+	
+	private String getDataUrl(long id) {
+		String url = getUrlBaseForLocalServer() + "/media/" + id + "/data";
+		return url;
+	}
+	
+	private String getUrlBaseForLocalServer() {
+		HttpServletRequest request =
+				((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		String base =
+				"http://"+request.getServerName()
+				+ ((request.getServerPort() != 80) ? ":"+request.getServerPort() : "");
+		return base;
+	}
 
  	@RequestMapping(value="/media", method=RequestMethod.GET)
 	public @ResponseBody Iterable<Media> getMediaList() {
@@ -54,6 +77,36 @@ public class MediaController {
     	} else {
     		return v;
     	}
+    }
+    
+    @RequestMapping(value="/media/{id}/data", method=RequestMethod.POST)
+    public @ResponseBody MediaStatus setMediaData(
+    		@PathVariable("id") long id,
+    		@RequestParam("data") MultipartFile mediaData,
+    		HttpServletResponse response) throws IOException {
+    	InputStream in = mediaData.getInputStream();
+    	Media m = media.findOne(id);
+    	if (m == null) {
+    		response.setStatus(HttpStatus.NOT_FOUND.value());
+    	} else {
+    		MediaFileManager mfm = MediaFileManager.get();
+    		mfm.saveMediaData(m, in);
+    	}
+    	return new MediaStatus(MediaStatus.MediaState.READY);
+    }
+    
+    @RequestMapping(value="/media/{id}/data", method=RequestMethod.GET)
+    public void getData(
+    		@PathVariable("id") long id,
+    		HttpServletResponse response) throws IOException {
+    	Media m = media.findOne(id);
+    	if (m == null) {
+    		response.setStatus(HttpStatus.NOT_FOUND.value());
+    	} else {
+    		MediaFileManager mfm = MediaFileManager.get();
+    		mfm.copyMediaData(m, response.getOutputStream());
+    	}
+    	return;
     }
     
     @RequestMapping(value="/media/{id}/like", method=RequestMethod.POST)
@@ -174,4 +227,12 @@ public class MediaController {
  		return media.findByName(title);
 	}
 	
+    @Bean
+    public MultipartConfigElement multipartConfig() {
+        MultiPartConfigFactory f = new MultiPartConfigFactory();
+        f.setMaxFileSize(20*1000*1000);
+        f.setMaxRequestSize(20*1000*1000);
+        return f.createMultipartConfig();
+    }
+    
 }
