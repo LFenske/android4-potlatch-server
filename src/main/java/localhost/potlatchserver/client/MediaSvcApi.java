@@ -26,7 +26,7 @@ import retrofit.http.Query;
  *       client ID, and client secret, encoded as described in the OAuth lecture
  *       videos.
  *    - The client ID for the Retrofit adapter is "mobile" with an empty password.
- *    - There must be 2 users, whose usernames are "user0" and "admin". All passwords 
+ *    - There must be 2 users, whose usernames are "Alice" and "admin". All passwords 
  *      should simply be "pass".
  *    - Rather than implementing this from scratch, we suggest reusing the example
  *      configuration from the OAuth 2.0 example in GitHub by copying these classes over:
@@ -109,9 +109,6 @@ public interface MediaSvcApi {
 
 	public static final String TITLE_PARAMETER = "title";
 
-	//TODO
-	public static final String DURATION_PARAMETER = "duration";
-
 	public static final String FLAGS_PARAMETER = "flags";
 
 	public static final String TOKEN_PATH = "/oauth/token";
@@ -121,10 +118,6 @@ public interface MediaSvcApi {
 
 	// The path to search media by title
 	public static final String MEDIA_TITLE_SEARCH_PATH = MEDIA_SVC_PATH + "/search/findByName";
-
-	//TODO
-	// The path to search media by duration
-	public static final String MEDIA_DURATION_SEARCH_PATH = MEDIA_SVC_PATH + "/search/findByDurationLessThan";
 
 	// The path to search media by flag count
 	public static final String MEDIA_FLAGS_SEARCH_PATH = MEDIA_SVC_PATH + "/search/findByFlags";
@@ -155,10 +148,6 @@ public interface MediaSvcApi {
 
 	@GET(MEDIA_TITLE_SEARCH_PATH)
 	public Collection<Media> findByTitle(@Query(TITLE_PARAMETER) String title);
-
-	//TODO
-	@GET(MEDIA_DURATION_SEARCH_PATH)
-	public Collection<Media> findByDurationLessThan(@Query(DURATION_PARAMETER) long duration);
 
 	@GET(MEDIA_FLAGS_SEARCH_PATH)
 	public Collection<Media> findByFlags(@Query(FLAGS_PARAMETER) long flags);

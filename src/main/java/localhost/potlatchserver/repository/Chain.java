@@ -48,7 +48,7 @@ public class Chain {
 
 	
 	/**
-	 * Two media will generate the same hashcode if they have exactly the same
+	 * Two chains will generate the same hashcode if they have exactly the same
 	 * values for their id and name.
 	 * 
 	 */
@@ -59,7 +59,7 @@ public class Chain {
 	}
 
 	/**
-	 * Two media are considered equal if they have exactly the same values for
+	 * Two chains are considered equal if they have exactly the same values for
 	 * their name.
 	 * 
 	 */

@@ -49,8 +49,8 @@ public class ChainController {
     
  	@RequestMapping(value="/chain/search/findByName", method=RequestMethod.GET)
 	public @ResponseBody Iterable<Chain> getChainByName(
-			@RequestParam String title) {
- 		return chain.findByName(title);
+			@RequestParam String name) {
+		return chain.findByName(name);
 	}
 	
 }

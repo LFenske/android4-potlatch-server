@@ -174,11 +174,4 @@ public class MediaController {
  		return media.findByName(title);
 	}
 	
- 	//TODO
-// 	@RequestMapping(value="/media/search/findByDurationLessThan", method=RequestMethod.GET)
-//	public @ResponseBody Iterable<Media> getMediaByDurationLessThan(
-//			@RequestParam long duration) {
-// 		return media.findByDurationLessThan(duration);
-//	}
-	
 }
