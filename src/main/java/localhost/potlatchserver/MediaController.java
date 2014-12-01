@@ -35,6 +35,7 @@ public class MediaController {
 	@Autowired
 	private MediaRepository media;
 	
+	//TODO Is the URL needed?
 	private String getDataUrl(long id) {
 		String url = getUrlBaseForLocalServer() + "/media/" + id + "/data";
 		return url;
@@ -60,11 +61,20 @@ public class MediaController {
 	}
 	
 	@RequestMapping(value="/media", method=RequestMethod.POST)
-	public @ResponseBody Media addMedia(@RequestBody Media v) {
-		Media retval = media.save(v);
+	public @ResponseBody Media addMedia(@RequestBody Media m) {
+		m.setUrl(getDataUrl(m.getId()));
+		Media retval = media.save(m);
 		return retval;
 	}
 
+    @RequestMapping(value="/media/chain/{chainid}", method=RequestMethod.GET)
+    public @ResponseBody Iterable<Media> getMediaChain(
+    		@PathVariable("chainid") long chainid,
+    		HttpServletResponse response)
+    {
+    	return media.findByChainid(chainid);
+    }
+    
     @RequestMapping(value="/media/{id}", method=RequestMethod.GET)
     public @ResponseBody Media getMedia(
     		@PathVariable("id") long id,
@@ -221,10 +231,16 @@ public class MediaController {
 		}
     }
     
+ 	@RequestMapping(value="/media/search/findByChainid", method=RequestMethod.GET)
+	public @ResponseBody Iterable<Media> getMediaByChainid(
+			@RequestParam Long chainid) {
+ 		return media.findByChainid(chainid);
+	}
+	
  	@RequestMapping(value="/media/search/findByName", method=RequestMethod.GET)
 	public @ResponseBody Iterable<Media> getMediaByName(
-			@RequestParam String title) {
- 		return media.findByName(title);
+			@RequestParam String name) {
+ 		return media.findByName(name);
 	}
 	
     @Bean

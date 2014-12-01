@@ -16,7 +16,10 @@ import org.springframework.stereotype.Repository;
 public interface MediaRepository extends CrudRepository<Media, Long>{
 
 	// Find all medias with a matching title (e.g., Media.name)
-	public Collection<Media> findByName(String title);
+	public Collection<Media> findByChainid(Long chainid);
+	
+	// Find all medias with a matching title (e.g., Media.name)
+	public Collection<Media> findByName(String name);
 	
 	//TODO
 	//public Collection<Media> findByDurationLessThan(long duration);
